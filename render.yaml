@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: cashslot
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile/Dockerfile
+    healthCheckPath: /api/health
+    envVars:
+      - key: WEB_CONCURRENCY
+        value: "1"
+      - key: SECRET
+        generateValue: true
+      - key: DEV_MODE
+        value: "1"
+      - key: DB_URL
+        value: sqlite:////tmp/cashslot.db
